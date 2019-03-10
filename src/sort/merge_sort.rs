@@ -46,8 +46,8 @@ pub fn sort(arr: &mut [i32]) {
 mod test {
     #[test]
     fn merge() {
-//        let mut case0 = [1, 3, 4, 5, 2, 5, 10, 12];
-//        super::merge(&mut case0, 0, 7, 4);
-//        assert_eq!(case0, [1, 2, 3, 4, 5, 5, 10, 12]);
+        let mut case0 = [1, 3, 4, 5, 2, 5, 10, 12];
+        super::merge(&mut case0, 0, 7, 4);
+        assert_eq!(case0, [1, 2, 3, 4, 5, 5, 10, 12]);
     }
 }
