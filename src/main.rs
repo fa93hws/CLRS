@@ -1,7 +1,7 @@
 mod sort;
 
 fn main() {
-    let mut arr = [20,120];
+    let mut arr = ['a', 's', 'b'];
     sort::insert_sort(&mut arr);
     println!("{:?}", arr);
 }
