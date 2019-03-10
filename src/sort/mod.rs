@@ -1,4 +1,5 @@
 extern crate rand;
+mod merge_sort;
 
 pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
     for i in 0..arr.len() {
@@ -11,6 +12,10 @@ pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
     }
 }
 
+pub fn merge_sort<T: Ord + Copy>(arr: &mut [T]) {
+    merge_sort::sort(arr);
+}
+
 #[cfg(test)]
 mod tests {
     use rand::Rng;
@@ -19,7 +24,7 @@ mod tests {
         let mut result: Vec<(Vec<i32>, Vec<i32>)> = Vec::new();
         let mut rng = rand::thread_rng();
         for _ in 0..num {
-            let size = rng.gen_range(0, 100);
+            let size = rng.gen_range(0, 5000);
             let case: Vec<i32> = (0..size).map(|_| {
                 rng.gen::<i32>()
             }).collect();
@@ -31,10 +36,39 @@ mod tests {
     }
 
     #[test]
+    fn sort_empty() {
+        let mut empty:[i32; 0] = [];
+        super::insert_sort(&mut empty);
+        assert_eq!(empty, []);
+        super::merge_sort(&mut empty);
+        assert_eq!(empty, []);
+    }
+
+    #[test]
+    fn sort_one() {
+        let mut one = [1];
+        super::insert_sort(&mut one);
+        assert_eq!(one, [1]);
+        super::merge_sort(&mut one);
+        assert_eq!(one, [1]);
+    }
+
+    #[test]
     fn insert_sort() {
-        for (mut case, ans) in create_cases(1000) {
+        for (mut case, ans) in create_cases(10) {
             super::insert_sort(&mut case);
             assert_eq!(case, ans);
         }
+    }
+
+    #[test]
+    fn merge_sort() {
+        let mut case = [3, 1, 6, 3, 6, 10, -1, 4];
+        super::merge_sort(&mut case);
+        assert_eq!(case, [-1, 1, 3, 3, 4, 6, 6, 10]);
+//        for (mut case, ans) in create_cases(10) {
+//            super::merge_sort(&mut case);
+//            assert_eq!(case, ans);
+//        }
     }
 }
