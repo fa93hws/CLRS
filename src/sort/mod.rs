@@ -12,7 +12,7 @@ pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
     }
 }
 
-pub fn merge_sort<T: Ord + Copy>(arr: &mut [T]) {
+pub fn merge_sort(arr: &mut [i32]) {
     merge_sort::sort(arr);
 }
 
@@ -24,7 +24,7 @@ mod tests {
         let mut result: Vec<(Vec<i32>, Vec<i32>)> = Vec::new();
         let mut rng = rand::thread_rng();
         for _ in 0..num {
-            let size = rng.gen_range(0, 5000);
+            let size = rng.gen_range(0, 10);
             let case: Vec<i32> = (0..size).map(|_| {
                 rng.gen::<i32>()
             }).collect();
@@ -63,9 +63,9 @@ mod tests {
 
     #[test]
     fn merge_sort() {
-        let mut case = [3, 1, 6, 3, 6, 10, -1, 4];
+        let mut case = [3, 1, 6, 3, 6, 10, -1, 4, -5, -19];
         super::merge_sort(&mut case);
-        assert_eq!(case, [-1, 1, 3, 3, 4, 6, 6, 10]);
+        assert_eq!(case, [-19, -5, -1, 1, 3, 3, 4, 6, 6, 10]);
 //        for (mut case, ans) in create_cases(10) {
 //            super::merge_sort(&mut case);
 //            assert_eq!(case, ans);

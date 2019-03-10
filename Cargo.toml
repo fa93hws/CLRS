@@ -1,5 +1,5 @@
 [package]
-name = "CLRS"
+name = "clrs"
 version = "0.1.0"
 authors = ["Eric <eric@canva.com>"]
 edition = "2018"
