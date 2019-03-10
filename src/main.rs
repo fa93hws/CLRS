@@ -1,3 +1,7 @@
+mod sort;
+
 fn main() {
-    println!("Hello, world!");
+    let mut arr = ['a', 's', 'b'];
+    sort::insert_sort(&mut arr);
+    println!("{:?}", arr);
 }
