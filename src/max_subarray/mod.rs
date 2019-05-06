@@ -152,4 +152,22 @@ mod test {
       assert_eq!(super::by_binary_search(&case), ans);
     }
   }
+
+  #[test]
+  fn profile_5k_binary() {
+    let mut rng = rand::thread_rng();
+    let case: Vec<i32> = (0..=5000).map(|_| {
+      rng.gen_range(-10000, 10000)
+    }).collect();
+    super::by_binary_search(&case);
+  }
+
+  #[test]
+  fn profile_5k_brute() {
+    let mut rng = rand::thread_rng();
+    let case: Vec<i32> = (0..=5000).map(|_| {
+      rng.gen_range(-10000, 10000)
+    }).collect();
+    super::by_brute(&case);
+  }
 }
