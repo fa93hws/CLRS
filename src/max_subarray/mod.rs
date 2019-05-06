@@ -85,7 +85,7 @@ fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
 
 fn by_iteration(arr: &Vec<i32>) -> i32 {
   let len = arr.len();
-  if (len < 2) { return 0; }
+  if len < 2 { return 0; }
   let mut min = std::i32::MAX;
   let mut sum = 0;
   for i in 0..len {
