@@ -12,10 +12,6 @@ pub fn by_brute(arr: & [i32]) -> i32 {
     max_diff
 }
 
-pub fn by_binary_search(arr: & [i32]) -> i32 {
-
-}
-
 #[cfg(test)]
 mod test {
     #[test]
