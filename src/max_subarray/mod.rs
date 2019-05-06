@@ -1,6 +1,6 @@
 extern crate rand;
 
-pub fn by_brute(arr: &Vec<i32>) -> i32 {
+fn by_brute(arr: &Vec<i32>) -> i32 {
   let len = arr.len();
   if len < 2 { return 0 }
   let mut max_diff = 0;
@@ -14,7 +14,7 @@ pub fn by_brute(arr: &Vec<i32>) -> i32 {
   max_diff
 }
 
-pub fn by_binary_search(arr: &Vec<i32>) -> i32 {
+fn by_binary_search(arr: &Vec<i32>) -> i32 {
   let len = arr.len();
   if len < 2 { return 0 }
   let changes = transform_to_changes(arr);
@@ -83,6 +83,22 @@ fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
   result
 }
 
+fn by_iteration(arr: &Vec<i32>) -> i32 {
+  let len = arr.len();
+  if (len < 2) { return 0; }
+  let mut min = std::i32::MAX;
+  let mut sum = 0;
+  for i in 0..len {
+    if arr[i] < min { min = arr[i]; }
+    if arr[i] - min > sum { sum = arr[i] - min }
+  }
+  sum
+}
+
+pub fn find(arr: &Vec<i32>) -> i32 {
+  by_binary_search(arr)
+}
+
 #[cfg(test)]
 mod test_brute {
   #[test]
@@ -141,6 +157,12 @@ mod test {
   }
 
   #[test]
+  fn simple() {
+    assert_eq!(super::by_iteration(&vec![-5, -1, 2, 5, 1, 0, 10, -20, 5, 12, 5, 4, 9]), 32);
+    assert_eq!(super::by_binary_search(&vec![-5, -1, 2, 5, 1, 0, 10, -20, 5, 1, 5, 4, 9]), 29);
+  }
+
+  #[test]
   fn empty() {
     assert_eq!(super::by_binary_search(&vec![]), 0);
     assert_eq!(super::by_binary_search(&vec![1]), 0);
@@ -160,6 +182,15 @@ mod test {
       rng.gen_range(-10000, 10000)
     }).collect();
     super::by_binary_search(&case);
+  }
+
+  #[test]
+  fn profile_5k_iteration() {
+    let mut rng = rand::thread_rng();
+    let case: Vec<i32> = (0..=5000).map(|_| {
+      rng.gen_range(-10000, 10000)
+    }).collect();
+    super::by_iteration(&case);
   }
 
   #[test]
