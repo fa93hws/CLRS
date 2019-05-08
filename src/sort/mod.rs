@@ -1,4 +1,5 @@
 extern crate rand;
+
 mod merge_sort;
 mod heap_sort;
 
@@ -16,6 +17,7 @@ pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
 pub fn merge_sort(arr: &mut [i32]) {
   merge_sort::sort(arr);
 }
+
 pub fn heap_sort(arr: &mut Vec<i32>) { heap_sort::sort(arr); }
 
 #[cfg(test)]
@@ -39,7 +41,7 @@ mod tests {
 
   #[test]
   fn sort_empty() {
-    let mut empty:[i32; 0] = [];
+    let mut empty: [i32; 0] = [];
     super::insert_sort(&mut empty);
     assert_eq!(empty, []);
     super::merge_sort(&mut empty);

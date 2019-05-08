@@ -2,7 +2,7 @@ extern crate rand;
 
 fn by_brute(arr: &Vec<i32>) -> i32 {
   let len = arr.len();
-  if len < 2 { return 0 }
+  if len < 2 { return 0; }
   let mut max_diff = 0;
   let mut diff: i32;
   for i in 0..(len - 1) {
@@ -16,9 +16,9 @@ fn by_brute(arr: &Vec<i32>) -> i32 {
 
 fn by_binary_search(arr: &Vec<i32>) -> i32 {
   let len = arr.len();
-  if len < 2 { return 0 }
+  if len < 2 { return 0; }
   let changes = transform_to_changes(arr);
-  let (_,_, res) = find_max_subarray_rec(&changes, 0, changes.len() - 1);
+  let (_, _, res) = find_max_subarray_rec(&changes, 0, changes.len() - 1);
   res
 }
 
@@ -46,7 +46,7 @@ fn find_max_crossing_subarray(change_arr: &Vec<i32>, low: usize, mid: usize, hig
   let mut right_max = std::i32::MIN;
   let mut right_max_idx: usize = mid;
   sum = 0;
-  for i in (mid+1)..=high {
+  for i in (mid + 1)..=high {
     sum += change_arr[i];
     if sum > right_max {
       right_max = sum;
@@ -70,16 +70,14 @@ fn find_max_subarray_rec(change_arr: &Vec<i32>, low: usize, high: usize) -> (usi
   let (left_low, left_high, left_sum) = find_max_subarray_rec(change_arr, low, mid);
   let (right_low, right_high, right_sum) = find_max_subarray_rec(change_arr, mid + 1, high);
   let (cross_low, cross_high, cross_sum) = find_max_crossing_subarray(change_arr, low, mid, high);
-  if left_sum >= right_sum && left_sum >= cross_sum { return (left_low, left_high, left_sum); }
-  else if right_sum >= cross_sum { return (right_low, right_high, right_sum); }
-  else { return (cross_low, cross_high, cross_sum); }
+  if left_sum >= right_sum && left_sum >= cross_sum { return (left_low, left_high, left_sum); } else if right_sum >= cross_sum { return (right_low, right_high, right_sum); } else { return (cross_low, cross_high, cross_sum); }
 }
 
 fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
   let len = arr.len();
   if len < 2 { panic!("length of the arr must be greater than 1"); }
   let mut result = Vec::new();
-  for i in 1..len { result.push(arr[i] - arr[i-1]); }
+  for i in 1..len { result.push(arr[i] - arr[i - 1]); }
   result
 }
 
@@ -119,8 +117,8 @@ mod test_brute {
 mod test_util {
   #[test]
   fn transform() {
-    let input = vec![1,2,3,4,5];
-    let output = vec![1,1,1,1];
+    let input = vec![1, 2, 3, 4, 5];
+    let output = vec![1, 1, 1, 1];
     assert_eq!(super::transform_to_changes(&input), output);
   }
 
