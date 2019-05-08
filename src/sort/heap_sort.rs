@@ -32,8 +32,11 @@ fn max_heapify(arr: &mut Vec<i32>, idx: usize, heap_size: usize) {
 
 /// argument and return value start from 1
 fn find_parent(idx: usize) -> usize { idx >> 1 }
+
 fn find_left_child(idx: usize) -> usize { idx << 1 }
+
 fn find_right_child(idx: usize) -> usize { (idx << 1) + 1 }
+
 #[cfg(test)]
 mod test {
   #[test]
@@ -54,19 +57,19 @@ mod test {
 
   #[test]
   fn max_heapify() {
-    let mut case0 = vec![1,2,3];
-    let mut case1 = vec![1,3,2];
+    let mut case0 = vec![1, 2, 3];
+    let mut case1 = vec![1, 3, 2];
     super::max_heapify(&mut case0, 0, 3);
     super::max_heapify(&mut case1, 0, 3);
-    assert_eq!(vec![3,2,1], case0);
-    assert_eq!(vec![3,1,2], case1);
+    assert_eq!(vec![3, 2, 1], case0);
+    assert_eq!(vec![3, 1, 2], case1);
   }
 
   #[test]
   fn build_heap() {
     let mut case0: Vec<i32> = vec![];
     let mut case1: Vec<i32> = vec![1];
-    let mut case2: Vec<i32> = vec![6,1,7,12,3,7,2,4,7,-11];
+    let mut case2: Vec<i32> = vec![6, 1, 7, 12, 3, 7, 2, 4, 7, -11];
     super::sort(&mut case0);
     super::sort(&mut case1);
     super::build_heap(&mut case2);
@@ -79,7 +82,7 @@ mod test {
   fn heap_sort() {
     let mut case0: Vec<i32> = vec![];
     let mut case1: Vec<i32> = vec![1];
-    let mut case2: Vec<i32> = vec![6,1,7,12,3,7,2,4,7,-11];
+    let mut case2: Vec<i32> = vec![6, 1, 7, 12, 3, 7, 2, 4, 7, -11];
     super::sort(&mut case0);
     super::sort(&mut case1);
     super::sort(&mut case2);
