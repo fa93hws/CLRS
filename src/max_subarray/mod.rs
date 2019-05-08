@@ -70,7 +70,13 @@ fn find_max_subarray_rec(change_arr: &Vec<i32>, low: usize, high: usize) -> (usi
   let (left_low, left_high, left_sum) = find_max_subarray_rec(change_arr, low, mid);
   let (right_low, right_high, right_sum) = find_max_subarray_rec(change_arr, mid + 1, high);
   let (cross_low, cross_high, cross_sum) = find_max_crossing_subarray(change_arr, low, mid, high);
-  if left_sum >= right_sum && left_sum >= cross_sum { return (left_low, left_high, left_sum); } else if right_sum >= cross_sum { return (right_low, right_high, right_sum); } else { return (cross_low, cross_high, cross_sum); }
+  if left_sum >= right_sum && left_sum >= cross_sum {
+    return (left_low, left_high, left_sum);
+  } else if right_sum >= cross_sum {
+    return (right_low, right_high, right_sum);
+  } else {
+    return (cross_low, cross_high, cross_sum);
+  }
 }
 
 fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
