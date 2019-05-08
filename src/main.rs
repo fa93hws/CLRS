@@ -1,5 +1,5 @@
 mod sort;
 mod max_subarray;
 
-fn main() {
-}
+// TODO profile cases here instead of in the tests
+fn main() {}
