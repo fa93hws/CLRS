@@ -1,5 +1,6 @@
 extern crate rand;
 mod merge_sort;
+mod heap_sort;
 
 pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
   for i in 0..arr.len() {
@@ -15,6 +16,7 @@ pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
 pub fn merge_sort(arr: &mut [i32]) {
   merge_sort::sort(arr);
 }
+pub fn heap_sort(arr: &mut Vec<i32>) { heap_sort::sort(arr); }
 
 #[cfg(test)]
 mod tests {
