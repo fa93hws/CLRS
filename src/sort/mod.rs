@@ -2,65 +2,51 @@ mod merge_sort;
 mod heap_sort;
 mod insert_sort;
 
-pub fn insert_sort(arr: &mut Vec<i32>) { insert_sort::sort(arr); }
-
-pub fn merge_sort(arr: &mut Vec<i32>) {
-  merge_sort::sort(arr);
-}
-
-pub fn heap_sort(arr: &mut Vec<i32>) { heap_sort::sort(arr); }
-
 #[cfg(test)]
 mod tests {
-  extern crate rand;
-  use rand::Rng;
+  use crate::test_utils;
+  use crate::test_utils::test_case::TestCase;
 
-  fn create_cases(num: i32) -> Vec<(Vec<i32>, Vec<i32>)> {
-    let mut result: Vec<(Vec<i32>, Vec<i32>)> = Vec::new();
-    let mut rng = rand::thread_rng();
-    for _ in 0..num {
-      let size = rng.gen_range(0, 5000);
-      let case: Vec<i32> = (0..size).map(|_| {
-        rng.gen::<i32>()
-      }).collect();
-      let mut ans = case.clone();
-      ans.sort();
-      result.push((case, ans));
-    }
-    result
+  fn create_cases(num: usize) -> TestCase<Vec<i32>, Vec<i32>> {
+    let case = test_utils::creation::create_random_i32_vector(num, -100, 100);
+    TestCase::new(case, |arr| {
+      let mut res = arr.clone();
+      res.sort();
+      res
+    })
   }
 
   #[test]
   fn sort_empty() {
     let mut empty: Vec<i32> = vec![];
-    super::insert_sort(&mut empty);
+    super::insert_sort::sort(&mut empty);
     assert_eq!(empty, []);
-    super::merge_sort(&mut empty);
+    super::merge_sort::sort(&mut empty);
     assert_eq!(empty, []);
   }
 
   #[test]
   fn sort_one() {
     let mut one = vec![1];
-    super::insert_sort(&mut one);
+    super::insert_sort::sort(&mut one);
     assert_eq!(one, [1]);
-    super::merge_sort(&mut one);
+    super::merge_sort::sort(&mut one);
     assert_eq!(one, [1]);
   }
 
   #[test]
   fn insert_sort() {
-    for (mut case, ans) in create_cases(10) {
-      super::insert_sort(&mut case);
-      assert_eq!(case, ans);
-    }
+    let test_case = create_cases(5);
+    let mut predicted = test_case.case.clone();
+    super::insert_sort::sort(&mut predicted);
+    assert_eq!(test_case.answer, predicted);
   }
 
   #[test]
   fn merge_sort() {
-    for (mut case, ans) in create_cases(10) {
-      super::merge_sort(&mut case);
-      assert_eq!(case, ans);
-    }
+    let test_case = create_cases(5);
+    let mut predicted = test_case.case.clone();
+    super::merge_sort::sort(&mut predicted);
+    assert_eq!(test_case.answer, predicted);
   }
 }

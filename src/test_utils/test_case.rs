@@ -1,10 +1,10 @@
 pub struct TestCase<T, R> {
-  case: T,
-  answer: R,
+  pub case: T,
+  pub answer: R,
 }
 
 impl<T, R> TestCase<T, R> {
-  fn new<F>(case: T, func: F) -> TestCase<T, R>
+  pub fn new<F>(case: T, func: F) -> TestCase<T, R>
     where F: Fn(&T) -> R {
     let answer = func(&case);
     TestCase { case, answer }
