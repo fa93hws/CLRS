@@ -1,7 +1,7 @@
 mod merge_sort;
 mod heap_sort;
 
-pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
+pub fn insert_sort(arr: &mut Vec<i32>) {
   for i in 0..arr.len() {
     for j in (0..i).rev() {
       match arr {
@@ -12,7 +12,7 @@ pub fn insert_sort<T: Ord + Copy>(arr: &mut [T]) {
   }
 }
 
-pub fn merge_sort(arr: &mut [i32]) {
+pub fn merge_sort(arr: &mut Vec<i32>) {
   merge_sort::sort(arr);
 }
 
@@ -40,7 +40,7 @@ mod tests {
 
   #[test]
   fn sort_empty() {
-    let mut empty: [i32; 0] = [];
+    let mut empty: Vec<i32> = vec![];
     super::insert_sort(&mut empty);
     assert_eq!(empty, []);
     super::merge_sort(&mut empty);
@@ -49,7 +49,7 @@ mod tests {
 
   #[test]
   fn sort_one() {
-    let mut one = [1];
+    let mut one = vec![1];
     super::insert_sort(&mut one);
     assert_eq!(one, [1]);
     super::merge_sort(&mut one);
