@@ -1,13 +1,13 @@
-use my_collections::heap;
+use crate::my_collections::heap::array_heap;
 
 /// build the max heap
 pub fn sort(arr: &mut Vec<i32>) {
-  heap::build_heap(arr);
+  array_heap::build_heap(arr);
   let mut heap_size = arr.len();
   for i in (1..arr.len()).rev() {
     arr.swap(0, i);
     heap_size -= 1;
-    heap::max_heapify(arr, 0, heap_size);
+    array_heap::max_heapify(arr, 0, heap_size);
   }
 }
 
