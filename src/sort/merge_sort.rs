@@ -1,5 +1,5 @@
 // beg...split | split..end + 1
-fn merge(arr: &mut [i32], beg: usize, end: usize, split: usize) {
+fn merge(arr: &mut Vec<i32>, beg: usize, end: usize, split: usize) {
   let mut merge_result = Vec::with_capacity(end - beg + 1);
   let mut i = beg;
   let mut j = split;
@@ -23,7 +23,7 @@ fn merge(arr: &mut [i32], beg: usize, end: usize, split: usize) {
   }
 }
 
-fn split(arr: &mut [i32], beg: usize, end: usize) {
+fn split(arr: &mut Vec<i32>, beg: usize, end: usize) {
   match end - beg {
     0 => (),
     _ => {
@@ -35,7 +35,7 @@ fn split(arr: &mut [i32], beg: usize, end: usize) {
   }
 }
 
-pub fn sort(arr: &mut [i32]) {
+pub fn sort(arr: &mut Vec<i32>) {
   match arr.len() {
     0 | 1 => return,
     _ => split(arr, 0, arr.len() - 1)
@@ -46,7 +46,7 @@ pub fn sort(arr: &mut [i32]) {
 mod test {
   #[test]
   fn merge() {
-    let mut case0 = [1, 3, 4, 5, 2, 5, 10, 12];
+    let mut case0 = vec![1, 3, 4, 5, 2, 5, 10, 12];
     super::merge(&mut case0, 0, 7, 4);
     assert_eq!(case0, [1, 2, 3, 4, 5, 5, 10, 12]);
   }
