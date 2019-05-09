@@ -1,5 +1,3 @@
-extern crate rand;
-
 mod merge_sort;
 mod heap_sort;
 
@@ -22,6 +20,7 @@ pub fn heap_sort(arr: &mut Vec<i32>) { heap_sort::sort(arr); }
 
 #[cfg(test)]
 mod tests {
+  extern crate rand;
   use rand::Rng;
 
   fn create_cases(num: i32) -> Vec<(Vec<i32>, Vec<i32>)> {
