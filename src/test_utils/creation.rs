@@ -2,7 +2,6 @@ extern crate rand;
 use rand::Rng;
 
 pub fn create_random_i32_vector(size: usize, low: i32, high: i32) -> Vec<i32> {
-  let mut result: Vec<(Vec<i32>, Vec<i32>)> = Vec::new();
   let mut rng = rand::thread_rng();
   (0..size).map(|_| {
     rng.gen_range(low, high)

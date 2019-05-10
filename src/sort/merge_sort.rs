@@ -44,10 +44,17 @@ pub fn sort(arr: &mut Vec<i32>) {
 
 #[cfg(test)]
 mod test {
+  use self::super::super::test_suits::get_test_cases;
+
   #[test]
-  fn merge() {
-    let mut case0 = vec![1, 3, 4, 5, 2, 5, 10, 12];
-    super::merge(&mut case0, 0, 7, 4);
-    assert_eq!(case0, [1, 2, 3, 4, 5, 5, 10, 12]);
+  fn sort() {
+    let cases = get_test_cases();
+    cases.iter().for_each(|case| {
+      let problem = &case.case;
+      let mut predicted = problem.clone();
+      predicted.sort();
+      assert_eq!(case.answer, predicted);
+    });
   }
 }
+

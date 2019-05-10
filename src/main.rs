@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate lazy_static;
+
 mod sort;
 mod max_subarray;
 mod my_collections;
