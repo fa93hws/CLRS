@@ -16,7 +16,7 @@ mod test {
   #[test]
   fn sort() {
     CASES.iter().for_each(|case| {
-      let problem = &case.case;
+      let problem: &Vec<i32> = &case.problem;
       let mut predicted = problem.clone();
       predicted.sort();
       assert_eq!(case.answer, predicted);
