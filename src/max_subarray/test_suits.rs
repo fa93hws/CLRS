@@ -5,7 +5,7 @@ use crate::test_utils::test_case::TestCase;
 const CASES_SIZE: usize = 12;
 
 lazy_static! {
-  static ref CASES: Vec<TestCase<Vec<i32>, i32>> = {
+  pub static ref CASES: Vec<TestCase<Vec<i32>, i32>> = {
     create_test_cases()
   };
 }
@@ -31,8 +31,4 @@ fn create_test_case(problem: &Vec<i32>) -> TestCase<Vec<i32>, i32> {
 fn create_test_cases() -> Vec<TestCase<Vec<i32>, i32>> {
   let problems = create_test_problems();
   problems.iter().map(create_test_case).collect()
-}
-
-pub fn get_test_cases() -> &'static Vec<TestCase<Vec<i32>, i32>> {
-  &CASES
 }
