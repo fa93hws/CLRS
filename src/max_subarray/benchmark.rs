@@ -9,7 +9,6 @@ enum FindType {
 }
 
 fn bench(mode: FindType, bench_size: usize, array_size: usize) -> i64 {
-  let mut duration: i64 = 0;
   let problem = create_random_i32_vector(array_size, -10000, 10000);
   let start = PreciseTime::now();
   for _ in 0..bench_size {
