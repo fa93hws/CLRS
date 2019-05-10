@@ -13,12 +13,11 @@ pub fn sort(arr: &mut Vec<i32>) {
 
 #[cfg(test)]
 mod test {
-  use self::super::super::test_suits::get_test_cases;
+  use self::super::super::test_suits::CASES;
 
   #[test]
   fn sort() {
-    let cases = get_test_cases();
-    cases.iter().for_each(|case| {
+    CASES.iter().for_each(|case| {
       let problem = &case.case;
       let mut predicted = problem.clone();
       predicted.sort();
