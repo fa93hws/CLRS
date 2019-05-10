@@ -13,7 +13,7 @@ pub fn find(arr: &Vec<i32>) -> i32 {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
   #[test]
   fn empty() {
     assert_eq!(super::find(&vec![]), 0);

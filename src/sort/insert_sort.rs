@@ -10,7 +10,7 @@ pub fn sort(arr: &mut Vec<i32>) {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
   use self::super::super::test_suits::CASES;
 
   #[test]

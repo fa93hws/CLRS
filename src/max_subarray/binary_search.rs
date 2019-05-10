@@ -72,8 +72,8 @@ fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
 }
 
 #[cfg(test)]
-mod test {
-  use self::super::super::test_suits::CASES;
+mod tests {
+  use crate::max_subarray::test_suits::CASES;
 
   #[test]
   fn find() {

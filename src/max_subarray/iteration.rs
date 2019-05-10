@@ -11,8 +11,8 @@ pub fn find(arr: &Vec<i32>) -> i32 {
 }
 
 #[cfg(test)]
-mod test {
-  use self::super::super::test_suits::CASES;
+mod tests {
+  use crate::max_subarray::test_suits::CASES;
 
   #[test]
   fn find() {
