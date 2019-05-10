@@ -73,17 +73,15 @@ fn transform_to_changes(arr: &Vec<i32>) -> Vec<i32> {
 
 #[cfg(test)]
 mod test {
-  #[test]
-  fn empty() {
-    assert_eq!(super::find(&vec![]), 0);
-    assert_eq!(super::find(&vec![1]), 0);
-  }
+  use self::super::super::test_suits::get_test_cases;
 
   #[test]
-  fn simple() {
-    assert_eq!(super::find(&vec![-5, -1, 2, 5, 1, 0, 10, -20, 5, 12, 5, 4, 9]), 32);
-    assert_eq!(super::find(&vec![-5, -1, 2, 5, 1, 0, 10, -20, 5, 1, 5, 4, 9]), 29);
-    assert_eq!(super::find(&vec![-5, -1, 2, 5, 1, 0, 10, -2, 5, 1, 5, 4, 9]), 15);
+  fn sort() {
+    let cases = get_test_cases();
+    cases.iter().for_each(|case| {
+      let problem = &case.case;
+      assert_eq!(case.answer, super::find(problem));
+    });
   }
 
   #[test]
