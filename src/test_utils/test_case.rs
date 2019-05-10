@@ -1,13 +1,13 @@
 pub struct TestCase<T, R> {
-  pub case: T,
+  pub problem: T,
   pub answer: R,
 }
 
 impl<T, R> TestCase<T, R> {
-  pub fn new<F>(case: T, func: F) -> TestCase<T, R>
+  pub fn new<F>(problem: T, func: F) -> TestCase<T, R>
     where F: Fn(&T) -> R {
-    let answer = func(&case);
-    TestCase { case, answer }
+    let answer = func(&problem);
+    TestCase { problem, answer }
   }
 }
 
@@ -24,10 +24,10 @@ mod test {
     let test_case0: super::TestCase<i32, i32> = super::TestCase::new(1, |int| {
       *int + 1
     });
-    assert_eq!(test_case0.case, 1);
+    assert_eq!(test_case0.problem, 1);
     assert_eq!(test_case0.answer, 2);
     let test_case1: super::TestCase<Vec<i32>, Vec<i32>> = super::TestCase::new(vec![1, 2, 3], double);
-    assert_eq!(test_case1.case, vec![1, 2, 3]);
+    assert_eq!(test_case1.problem, vec![1, 2, 3]);
     assert_eq!(test_case1.answer, vec![2, 4, 6]);
   }
 }

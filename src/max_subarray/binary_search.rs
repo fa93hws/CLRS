@@ -76,9 +76,9 @@ mod test {
   use self::super::super::test_suits::CASES;
 
   #[test]
-  fn sort() {
+  fn find() {
     CASES.iter().for_each(|case| {
-      let problem = &case.case;
+      let problem: &Vec<i32> = &case.problem;
       assert_eq!(case.answer, super::find(problem));
     });
   }
