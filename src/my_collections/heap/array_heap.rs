@@ -76,9 +76,7 @@ pub fn max_heapify(arr: &mut Vec<i32>, idx: usize, heap_size: usize) {
 }
 
 /// argument and return value start from 1
-fn find_parent(idx: usize) -> usize {
-  idx >> 1
-}
+fn find_parent(idx: usize) -> usize { idx >> 1 }
 
 fn find_left_child(idx: usize) -> usize { idx << 1 }
 
