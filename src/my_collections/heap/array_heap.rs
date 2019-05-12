@@ -53,6 +53,13 @@ impl MaxHeap {
     self.array.push(std::i32::MIN);
     self.increase_key(self.size() - 1, value);
   }
+
+  pub fn delete(&mut self, idx: usize) {
+    if idx >= self.size() { panic!("heap underflow") } else if idx == self.size() { self.array.pop(); }
+    self.array.swap_remove(idx);
+    let size = self.size();
+    max_heapify(&mut self.array, idx, size);
+  }
 }
 
 
@@ -158,5 +165,23 @@ mod test {
     assert_eq!(vec![12, 7, 9, 6, 3, 7, 2, 4, 1, -11], heap.array);
     heap.increase_key(5, 15);
     assert_eq!(vec![15, 7, 12, 6, 3, 9, 2, 4, 1, -11], heap.array);
+  }
+
+  #[test]
+  #[should_panic]
+  fn delete_invalid() {
+    let mut heap = MaxHeap::new(&vec![1, 2, 3, 4]);
+    heap.delete(4);
+  }
+
+  #[test]
+  fn delete() {
+    let mut heap1 = MaxHeap::new(&vec![1, 2, 3, 4]);
+    heap1.delete(3);
+    assert_eq!(vec![4, 2, 3], heap1.array);
+    let mut heap2 = MaxHeap::new(&vec![6, 1, 7, 12, 3, 7, 2, 4, 7, -11]);
+    // 12, 7, 7, 6, 3, 7, 2, 4, 1, -11
+    heap2.delete(3);
+    assert_eq!(vec![12, 7, 7, 4, 3, 7, 2, -11, 1], heap2.array);
   }
 }
