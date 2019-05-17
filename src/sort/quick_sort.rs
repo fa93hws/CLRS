@@ -2,7 +2,7 @@ pub fn sort(arr: &mut Vec<i32>) {
   sort_rec(arr, 0, arr.len() - 1);
 }
 
-fn sort_rec(arr:&mut Vec<i32>, begin: usize, end: usize) {
+fn sort_rec(arr: &mut Vec<i32>, begin: usize, end: usize) {
   if begin < end {
     let pivot = partition(arr, begin, end, (begin + end) / 2);
     sort_rec(arr, begin, pivot);
@@ -34,7 +34,7 @@ mod tests {
     assert_eq!(vec![1, 1, -2, 2, 4, 9, 2, 4, 5, 4, 2, 7, 2], case0);
     assert_eq!(3, par0);
     let mut case1 = vec![4, 2, 1];
-    let par1 = super::partition(&mut case1, 0 , 2, 1);
+    let par1 = super::partition(&mut case1, 0, 2, 1);
     assert_eq!(vec![1, 2, 4], case1);
     assert_eq!(1, par1);
   }
