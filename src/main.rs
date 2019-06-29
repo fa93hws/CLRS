@@ -5,6 +5,7 @@ extern crate time;
 mod sort;
 mod max_subarray;
 mod my_collections;
+mod others;
 mod test_utils;
 
 const BENCH_SAMPLE_SIZE: usize = 50;
